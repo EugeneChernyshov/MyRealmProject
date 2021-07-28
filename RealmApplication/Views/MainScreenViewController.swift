@@ -21,20 +21,15 @@ class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.setViewDelegate(delegate: self)
-        onLoadLabelDescription()
-        
+        updateView()
     }
 
-    func onLoadLabelDescription() {
+    func updateView() {
         self.label.text = self.presenter.reciveTextDescriptionFromDB()
     }
     
     @IBAction func refreshButton(_ sender: UIButton) {
-        onLoadLabelDescription()
-    }
-    
-    func onUpdateLabel() {
-        onLoadLabelDescription()
+        updateView()
     }
 }
 
@@ -49,8 +44,8 @@ extension MainScreenViewController: MainScreenPresenterDelegate {
         activityView.stopAnimating()
     }
 
-    func updateLabel() {
-        onUpdateLabel()
+    func onUpdateView() {
+        updateView()
     }
 }
 

@@ -11,7 +11,7 @@ import RealmSwift
 protocol MainScreenPresenterDelegate: AnyObject {
     func showActivityIndicator()
     func hideActivityIndicator()
-    func updateLabel()
+    func onUpdateView()
 }
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
@@ -49,7 +49,7 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         } catch  {
             print("Error , I can't commit write")
         }
-        delegate?.updateLabel()
+        delegate?.onUpdateView()
     }
     
     func reciveTextDescriptionFromDB() -> String? {

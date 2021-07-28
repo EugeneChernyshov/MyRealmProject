@@ -11,15 +11,12 @@ import Alamofire
 class Networking {
     
     static let shared = Networking()
-    
-    private var baseURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=a837e864210a43d0d8485e7294324e9e&language=en-US"
  
     func getAllGenres(completion: (([Genres]) -> Void)?) {
-        AF.request(self.baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response
+        AF.request(Api.getFullUrlString(baseURL: Api.BaseUrl, apiKey: Api.apiKey, destination: Api.destination, language: Api.language), method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response
         { (responseData) in
-            guard let data = responseData.data else {return}
+            guard let data = responseData.data else { return }
             do {
-                
                 let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
                 guard let jsonArray = jsonResponse as? [String: Any], let movieGenres = jsonArray["genres"] as? [[String: Any]] else { return }
                 var genres = [Genres]()
