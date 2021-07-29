@@ -30,29 +30,38 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         delegate?.showActivityIndicator()
         let queue = DispatchQueue(label: "com.utility.saveFromNetwork", qos: .utility)
         
-        queue.async {
-        Networking.shared.getAllWalletTypes { type in
-            self.saveWalletTypesData(stringData: type.first?.name)
-            self.delegate?.hideActivityIndicator()
+       queue.async {
+            guard let url = URL(string: WalletApi.getFullUrlString(baseURL: WalletApi.BaseUrl, destination: WalletApi.destination)) else { return }
+            
+            Networking.shared.fetch(from: url, decodable: WalletTypesModel.self) { type in
+
+                self.saveWalletTypesData(stringData: type.walletTypes.first?.name)
+                self.delegate?.hideActivityIndicator()
             }
         }
     }
+    
     
     func fetchGenresData()  {
         delegate?.showActivityIndicator()
         let queue = DispatchQueue(label: "com.utility.saveFromNetwork", qos: .utility)
         
         queue.async {
-            Networking.shared.getAllGenres() { [weak self] genres in
-                self?.saveGenresData(stringData: genres.first?.name)
-                self?.delegate?.hideActivityIndicator()
-            }
-        }
+            guard let url = URL(string: MovieApi.getFullUrlString(baseURL: MovieApi.BaseUrl, apiKey: MovieApi.apiKey, destination: MovieApi.destination, language: MovieApi.language)) else { return }
+             
+             Networking.shared.fetch(from: url, decodable: FilmGenresModel.self) { genre in
+
+                self.saveGenresData(stringData: genre.genres.first?.name)
+                self.delegate?.hideActivityIndicator()
+             }
+         }
     }
+    
+    
     
     func saveWalletTypesData(stringData: String?) {
         let myWallet = Wallet()
-  
+        
         self.realm.beginWrite()
         myWallet.type = stringData
         self.realm.add(myWallet)
