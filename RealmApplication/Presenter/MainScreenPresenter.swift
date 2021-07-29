@@ -26,23 +26,49 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
     
     private let realm = try! Realm()
     
-    func fetchDataFromNetwork()  {
+    func fetchWalletData() {
+        delegate?.showActivityIndicator()
+        let queue = DispatchQueue(label: "com.utility.saveFromNetwork", qos: .utility)
+        
+        queue.async {
+        Networking.shared.getAllWalletTypes { type in
+            self.saveWalletTypesData(stringData: type.first?.name)
+            self.delegate?.hideActivityIndicator()
+            }
+        }
+    }
+    
+    func fetchGenresData()  {
         delegate?.showActivityIndicator()
         let queue = DispatchQueue(label: "com.utility.saveFromNetwork", qos: .utility)
         
         queue.async {
             Networking.shared.getAllGenres() { [weak self] genres in
-                self?.saveStringDataToRealm(name: genres.first?.name)
+                self?.saveGenresData(stringData: genres.first?.name)
                 self?.delegate?.hideActivityIndicator()
             }
         }
     }
     
-    func saveStringDataToRealm(name: String?) {
+    func saveWalletTypesData(stringData: String?) {
+        let myWallet = Wallet()
+  
+        self.realm.beginWrite()
+        myWallet.type = stringData
+        self.realm.add(myWallet)
+        do {
+            try self.realm.commitWrite()
+        } catch  {
+            print("Error , I can't commit write")
+        }
+        delegate?.onUpdateView()
+    }
+    
+    func saveGenresData(stringData: String?) {
         let myItem = Item()
         
         self.realm.beginWrite()
-        myItem.name = name
+        myItem.name = stringData
         self.realm.add(myItem)
         do {
             try self.realm.commitWrite()
@@ -52,11 +78,18 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         delegate?.onUpdateView()
     }
     
-    func reciveTextDescriptionFromDB() -> String? {
-        fetchDataFromNetwork()
+    func getGenresData() -> String? {
+        fetchGenresData()
         
         let results = realm.objects(Item.self)
         
         return results.first?.name
+    }
+    
+    func getWalletTypesData() -> String? {
+        fetchWalletData()
+        let results = realm.objects(Wallet.self)
+        
+        return results.first?.type
     }
 }

@@ -15,6 +15,7 @@ class MainScreenViewController: UIViewController {
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
     
     @IBOutlet weak var refreshButton: UIButton!
     
@@ -25,7 +26,8 @@ class MainScreenViewController: UIViewController {
     }
 
     func updateView() {
-        self.label.text = self.presenter.reciveTextDescriptionFromDB()
+        self.label.text = self.presenter.getGenresData()
+        self.secondLabel.text = self.presenter.getWalletTypesData()
     }
     
     @IBAction func refreshButton(_ sender: UIButton) {

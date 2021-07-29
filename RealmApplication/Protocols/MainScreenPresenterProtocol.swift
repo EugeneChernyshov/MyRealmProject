@@ -10,8 +10,11 @@ import UIKit
 
 protocol MainScreenPresenterProtocol {
     
-    func fetchDataFromNetwork()
-    func saveStringDataToRealm(name: String?)
-    func reciveTextDescriptionFromDB() -> String?
+    func fetchWalletData()
+    func fetchGenresData()
+    func saveGenresData(stringData: String?)
+    func saveWalletTypesData(stringData: String?)
+    func getGenresData() -> String?
+    func getWalletTypesData() -> String?
 
 }
