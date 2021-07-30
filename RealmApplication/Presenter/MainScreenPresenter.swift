@@ -5,6 +5,8 @@
 //  Created by Evgeniy Chernyshov on 21.07.2021.
 //
 
+//po Realm.Configuration.defaultConfiguration.fileURL
+
 import Foundation
 import RealmSwift
 
@@ -16,9 +18,13 @@ protocol MainScreenPresenterDelegate: AnyObject {
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
     
+    let storage: RealmServiceProtocol = RealmService()
+    
     typealias PresenterDelegate = MainScreenPresenterDelegate & UIViewController
     
     weak var delegate: PresenterDelegate?
+    
+    let service = RealmService()
     
     public func setViewDelegate(delegate: PresenterDelegate) {
         self.delegate = delegate
@@ -41,6 +47,43 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         }
     }
     
+    func fetchSomeData() {
+        let myDog = Wallet()
+        myDog.type = "Rex"
+        myDog.id = 1
+        print("name of dog: \(myDog.type)")
+
+        // Get the default Realm
+        let realm = try! Realm()
+
+        // Query Realm for all dogs less than 2 years old
+        let puppies = realm.objects(Wallet.self).filter("id < 2")
+        puppies.count // => 0 because no dogs have been added to the Realm yet
+
+        // Persist your data easily
+//        try! realm.write {
+//            realm.add(myDog)
+//        }
+//
+        // Queries are updated in realtime
+        puppies.count // => 1
+
+        // Query and update from any thread
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                let realm = try! Realm()
+                let theDog = realm.objects(Wallet.self).filter("type == Rex").first
+                try! realm.write {
+                    theDog!.type = "Rich"
+                }
+            }
+    }
+    }
+    
+    func removeData() {
+        //let wallet = Wallet()
+        service.removeAll()
+    }
     
     func fetchGenresData()  {
         delegate?.showActivityIndicator()
@@ -63,7 +106,7 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         let myWallet = Wallet()
         
         self.realm.beginWrite()
-        myWallet.type = stringData
+        //myWallet.type = stringData
         self.realm.add(myWallet)
         do {
             try self.realm.commitWrite()

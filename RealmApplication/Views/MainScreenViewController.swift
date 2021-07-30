@@ -21,8 +21,11 @@ class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.setViewDelegate(delegate: self)
-        updateView()
+        
+        //presenter.setViewDelegate(delegate: self)
+        //presenter.removeData()
+        presenter.fetchSomeData()
+        //updateView()
     }
 
     func updateView() {

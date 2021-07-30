@@ -8,8 +8,12 @@
 import Foundation
 import RealmSwift
 
+@objcMembers
 class Item: Object {
     
     @objc dynamic var name: String?
     
+//    override class func primaryKey() -> String? {
+//         return "name"
+//     }
 }

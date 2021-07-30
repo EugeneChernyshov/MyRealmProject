@@ -17,6 +17,9 @@
 		2E962DE926B1894300A5CACD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E962DE826B1894300A5CACD /* API.swift */; };
 		2E962DED26B1AEA800A5CACD /* WalletTypesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E962DEC26B1AEA800A5CACD /* WalletTypesModel.swift */; };
 		2E962DEF26B1B13300A5CACD /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E962DEE26B1B13300A5CACD /* Wallet.swift */; };
+		2E962DF126B3032800A5CACD /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E962DF026B3032800A5CACD /* URL+Extension.swift */; };
+		2E962DF326B3093B00A5CACD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E962DF226B3093B00A5CACD /* Constants.swift */; };
+		2E962DF526B3FA0200A5CACD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E962DF426B3FA0100A5CACD /* RealmService.swift */; };
 		2EAF05ED26A6BD9B00179B6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF05EC26A6BD9B00179B6F /* AppDelegate.swift */; };
 		2EAF05EF26A6BD9B00179B6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF05EE26A6BD9B00179B6F /* SceneDelegate.swift */; };
 		2EAF05F426A6BD9B00179B6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAF05F226A6BD9B00179B6F /* Main.storyboard */; };
@@ -35,6 +38,9 @@
 		2E962DE826B1894300A5CACD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		2E962DEC26B1AEA800A5CACD /* WalletTypesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypesModel.swift; sourceTree = "<group>"; };
 		2E962DEE26B1B13300A5CACD /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		2E962DF026B3032800A5CACD /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		2E962DF226B3093B00A5CACD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2E962DF426B3FA0100A5CACD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		2EAF05E926A6BD9B00179B6F /* RealmApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EAF05EC26A6BD9B00179B6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EAF05EE26A6BD9B00179B6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +148,9 @@
 				2EAF05F726A6BD9F00179B6F /* LaunchScreen.storyboard */,
 				2EAF05FA26A6BD9F00179B6F /* Info.plist */,
 				2E962DE826B1894300A5CACD /* API.swift */,
+				2E962DF026B3032800A5CACD /* URL+Extension.swift */,
+				2E962DF226B3093B00A5CACD /* Constants.swift */,
+				2E962DF426B3FA0100A5CACD /* RealmService.swift */,
 			);
 			path = RealmApplication;
 			sourceTree = "<group>";
@@ -282,8 +291,11 @@
 				2E2AB9A626A81AA60053E278 /* MainScreenPresenter.swift in Sources */,
 				2E962DEF26B1B13300A5CACD /* Wallet.swift in Sources */,
 				2EAF05ED26A6BD9B00179B6F /* AppDelegate.swift in Sources */,
+				2E962DF126B3032800A5CACD /* URL+Extension.swift in Sources */,
 				2E2AB97F26A706BA0053E278 /* NetworkManager.swift in Sources */,
+				2E962DF326B3093B00A5CACD /* Constants.swift in Sources */,
 				2EAF05EF26A6BD9B00179B6F /* SceneDelegate.swift in Sources */,
+				2E962DF526B3FA0200A5CACD /* RealmService.swift in Sources */,
 				2E962DED26B1AEA800A5CACD /* WalletTypesModel.swift in Sources */,
 				2E2AB97D26A701880053E278 /* Item.swift in Sources */,
 				2E2AB9AC26A830FF0053E278 /* MainScreenViewController.swift in Sources */,
